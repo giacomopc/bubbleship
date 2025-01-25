@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 	public const float MinHealth = 0f;
 
 	public float speed;
-	public float maxHealth = 10f;
+	public float maxHealth = 2f;
 	public float health;
 
 	void Awake()
@@ -42,8 +42,11 @@ public class Enemy : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		print($"{gameObject.name} aaaa");
+		// print($"{gameObject.name} aaaa");
 
-		OnDamage(10f);
+		if(collider.GetComponent<Attack>() != null)
+			OnDamage(2f);
+		else if(collider.GetComponent<Player>() != null)
+			Player.instance.OnDamage(1f);
 	}
 }

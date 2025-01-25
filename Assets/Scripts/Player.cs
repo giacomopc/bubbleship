@@ -1,24 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine; 
 
 public class Player : MonoBehaviour
 {
 	public static Player instance;
 
-	public SpriteRenderer sprite;
-	public float speed;
-	public Camera camera;
-	public float playerRadius = 5f;
+	[Header("Unity Objects")]
 	public GameObject attackPrefab;
-
-	public float fpsWalk = 3f;
+	public new Camera camera;
+	public SpriteRenderer sprite;
 	public Sprite idleSprite;
 	public Sprite[] walkSprites;
+	public HealthBar healthBar;
 	
+	
+	[Header("Tweakables")]
+	public float speed;
+	public float playerRadius = 5f;
+	public float fpsWalk = 3f;
+
+	// private
 	Vector2 direction = Vector2.right;
-	bool moving = false;
-	float movingTime = 0f;
+	bool moving;
+	float movingTime;
+	float invincibleTime;
+
+	bool invincible => invincibleTime > 0;
 
 	void Awake()
 	{
@@ -82,6 +91,34 @@ public class Player : MonoBehaviour
 				sprite.sprite = idleSprite;
 			}
 		}
+
+		if(invincible)
+		{
+			invincibleTime -= Time.deltaTime;
+			sprite.color = invincibleTime % 0.5f < 0.25f ? Color.white : Color.clear;
+		}
+		else
+		{
+			sprite.color = Color.white;
+		}
+
+
+	}
+
+	public void OnDamage(float damage)
+	{
+		if(invincible)
+			return;
+
+		print("invincibleTime: " + invincibleTime);
+
+		healthBar.OnDamage(damage);	
+		invincibleTime = 2f;
+	}
+
+	public void OnCollider2D(Collider2D other)
+	{
+		print("choke!");
 	}
 
 }
