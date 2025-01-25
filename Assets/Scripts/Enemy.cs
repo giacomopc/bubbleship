@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+	public const float MinHealth = 0f;
+
 	public float speed;
+	public float maxHealth = 10f;
+	public float health;
 
 	void Awake()
 	{
 		const float variance = 2f;
 		speed = Random.Range(speed - variance, speed + variance);
+		health = maxHealth;
 	}
-	
+
 	void Update()
 	{
 		var player = Player.instance;
@@ -23,5 +28,22 @@ public class Enemy : MonoBehaviour
 		direction = direction.normalized;
 		var movement = direction * speed * Time.deltaTime;
 		transform.position += movement;
+	}
+
+	void OnDamage(float damage)
+	{
+		health = Mathf.Max(MinHealth, health - damage);
+
+		if(health == MinHealth)
+		{
+			Destroy(gameObject);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D collider)
+	{
+		print($"{gameObject.name} aaaa");
+
+		OnDamage(10f);
 	}
 }
