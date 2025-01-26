@@ -10,11 +10,9 @@ public class Game : MonoBehaviour
 {
 	public Text time;
 	public Transform ship;
-	public HealthBar battery;
+	
 
 	public float InitialTime = 180f;
-
-
 	float timeElapsed = 0f;
 
 	void Awake()

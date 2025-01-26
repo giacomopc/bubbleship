@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 	public Sprite[] walkSprites;
 	public HealthBar healthBar;
 	public HealthBar battery;
-	new public Image light;
+	new public SpriteRenderer light;
 	
 	
 	[Header("Tweakables")]
@@ -41,12 +41,13 @@ public class Player : MonoBehaviour
 	void Update()
 	{
 		// attack
+		var angle = Vector2.SignedAngle(Vector2.right, direction);
+
 		if(Input.attack)
 		{
 			var attackGO = GameObject.Instantiate(attackPrefab, null);
 			var attackTransform = attackGO.transform;
 			
-			var angle = Vector2.SignedAngle(Vector2.right, direction);
 			print($"direction {direction} angle {angle}");
 			attackTransform.position = Player.instance.transform.position + playerRadius * new Vector3(direction.x, direction.y, 0f);
 			attackTransform.eulerAngles = Vector3.forward * angle;
@@ -54,15 +55,23 @@ public class Player : MonoBehaviour
 			print("attack");
 		}
 
-		if(Input.flashlight)
+		// flashlight
 		{
-			if(battery.health > 0f)
-				flashlightOn = !flashlightOn;
-		}
+			if(Input.flashlight)
+			{
+				if(battery.health > 0f)
+					flashlightOn = !flashlightOn;
+			}
 
-		if(flashlightOn)
-		{
+			if(flashlightOn)
+				battery.OnDamage(Time.deltaTime / 2f);
+			else
+				battery.OnDamage(-Time.deltaTime / 2f);
 
+			light.enabled = flashlightOn;
+			
+			var newAngle = Mathf.LerpAngle(light.transform.eulerAngles.z, angle, 0.2f);
+			light.transform.eulerAngles = Vector3.forward * newAngle;
 		}
 	}
 
@@ -87,6 +96,7 @@ public class Player : MonoBehaviour
 				this.direction = direction;
 				var movement3 = new Vector3(direction.x, direction.y, 0f); 
 				transform.localPosition = transform.localPosition + movement3 * speed * Time.deltaTime;
+
 			}
 		}
 	}
@@ -116,6 +126,8 @@ public class Player : MonoBehaviour
 		{
 			sprite.color = Color.white;
 		}
+
+		
 
 
 	}
