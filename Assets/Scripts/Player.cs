@@ -143,6 +143,9 @@ public class Player : MonoBehaviour
 
 	public void OnDamage(float damage)
 	{
+		if(Game.win)
+			return;
+			
 		if(invincible)
 			return;
 
