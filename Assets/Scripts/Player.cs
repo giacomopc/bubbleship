@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 	public HealthBar healthBar;
 	public HealthBar battery;
 	new public SpriteRenderer light;
+	public SpriteMask lightMask;
 	
 	
 	[Header("Tweakables")]
@@ -60,7 +61,9 @@ public class Player : MonoBehaviour
 			if(Input.flashlight)
 			{
 				if(battery.health > 0f)
-					flashlightOn = !flashlightOn;
+					flashlightOn = true;
+
+				flashlightOn = false;	
 			}
 
 			if(flashlightOn)
@@ -69,8 +72,9 @@ public class Player : MonoBehaviour
 				battery.OnDamage(-Time.deltaTime / 2f);
 
 			light.enabled = flashlightOn;
+			lightMask.enabled = flashlightOn;
 			
-			var newAngle = Mathf.LerpAngle(light.transform.eulerAngles.z, angle, 0.2f);
+			var newAngle = Mathf.LerpAngle(light.transform.eulerAngles.z, angle, 0.15f);
 			light.transform.eulerAngles = Vector3.forward * newAngle;
 		}
 	}
