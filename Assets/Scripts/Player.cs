@@ -87,6 +87,8 @@ public class Player : MonoBehaviour
 			var newAngle = Mathf.LerpAngle(light.transform.eulerAngles.z, angle, 0.15f);
 			light.transform.eulerAngles = Vector3.forward * newAngle;
 		}
+
+		
 	}
 
 	void FixedUpdate()

@@ -14,10 +14,11 @@ public class FlyingEnemy : MonoBehaviour
 		{
 			transform.localScale -= Vector3.one * 0.1f * Time.deltaTime;
 
-			if(transform.localScale.magnitude < 0.4)
+			if(transform.localScale.x < 0.4)
 			{
+				enabled = false;
 				spriteRenderer.enabled = false;
-				Destroy(gameObject);
+				// Destroy(gameObject);
 			}
 		}
 	}

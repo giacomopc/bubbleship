@@ -14,6 +14,11 @@ public class Game : MonoBehaviour
 	public Transform ship;
 	public SpriteRenderer shipTop;
 	public SpriteRenderer house;
+	public AudioSource music;
+	public CanvasGroup canvasGroup;
+	public SpriteRenderer dialogue;
+
+	public FlyingEnemy[] flyingEnemies;
 	
 
 	public float InitialTime = 180f;
@@ -45,11 +50,39 @@ public class Game : MonoBehaviour
 			time.text = $"TIME {minutes}:{seconds:D2}";
 		}
 
+		if(!win)
+		{
+			foreach(var enemy in flyingEnemies)
+			{
+				if(!enemy.enabled)
+					break;
+
+				Win();
+			}
+		}
+
 		if(Input.win)
 		{
-			win = true;
-			house.DOFade(1f, 1f);
-			print("win");
+			Win();
 		}
+
+		if(win && Input.attack)
+		{
+			house.enabled = false;
+			dialogue.enabled = true;
+		}
+
+		
+	}
+
+	void Win()
+	{
+		win = true;
+		house.DOFade(1f, 1f);
+		print("win");
+		music.DOFade(0f, 1f);
+		canvasGroup.DOFade(0f, 1f);
+		ship.gameObject.SetActive(false);
+		Player.instance.enabled = false;
 	}
 }
