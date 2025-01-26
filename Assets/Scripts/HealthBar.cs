@@ -23,7 +23,7 @@ public class HealthBar : MonoBehaviour
 	public void OnDamage(float damage)
 	{
 		print($"health {health} damage {damage}");
-		health -= damage;
+		health = Mathf.Max(0f, health - damage);
 		UpdateBar();
 	}
 

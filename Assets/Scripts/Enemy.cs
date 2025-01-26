@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
 	public const float MinHealth = 0f;
 
+	public SpriteRenderer spriteRenderer;
+
 	public float speed;
-	public float maxHealth = 2f;
+	float maxHealth = 2f;
 	public float health;
 
 	void Awake()
@@ -34,10 +37,15 @@ public class Enemy : MonoBehaviour
 	{
 		health = Mathf.Max(MinHealth, health - damage);
 
+		spriteRenderer.color = Color.red;
+		spriteRenderer.DOColor(Color.white, 0.4f);
+
 		if(health == MinHealth)
 		{
+			spriteRenderer.DOKill();
 			Destroy(gameObject);
 		}
+		
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)
@@ -45,7 +53,7 @@ public class Enemy : MonoBehaviour
 		// print($"{gameObject.name} aaaa");
 
 		if(collider.GetComponent<Attack>() != null)
-			OnDamage(2f);
+			OnDamage(1f);
 		else if(collider.GetComponent<Player>() != null)
 			Player.instance.OnDamage(1f);
 	}
