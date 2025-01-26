@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
+
+
 public class Enemy : MonoBehaviour
 {
+	public AudioClip deathclip;
 	public const float MinHealth = 0f;
 
 	public SpriteRenderer spriteRenderer;
@@ -12,6 +15,7 @@ public class Enemy : MonoBehaviour
 	public float speed;
 	float maxHealth = 2f;
 	public float health;
+
 
 	void Awake()
 	{
@@ -43,6 +47,7 @@ public class Enemy : MonoBehaviour
 		if(health == MinHealth)
 		{
 			spriteRenderer.DOKill();
+			sfxaudiosource.playclip(deathclip);
 			Destroy(gameObject);
 		}
 		

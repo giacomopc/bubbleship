@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b557eb5ff900d4f7d9771598ea40fe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathclip: {fileID: 8300000, guid: 0c8524ff3d9c1ae47b5679cb348a0da8, type: 3}
   spriteRenderer: {fileID: 5095059673813801692}
   speed: 7
-  maxHealth: 10
   health: 0
 --- !u!58 &7497366801523449293
 CircleCollider2D:

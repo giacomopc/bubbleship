@@ -19,9 +19,13 @@ public class Player : MonoBehaviour
 	public HealthBar battery;
 	new public SpriteRenderer light;
 	public SpriteMask lightMask;
-	
-	
-	[Header("Tweakables")]
+
+	[Header("Unity Audio")]
+
+	public AudioClip attackclip;
+
+
+    [Header("Tweakables")]
 	public float speed;
 	public float playerRadius = 5f;
 	public float fpsWalk = 3f;
@@ -47,6 +51,7 @@ public class Player : MonoBehaviour
 
 		if(Input.attack)
 		{
+			sfxaudiosource.playclip(attackclip);
 			var attackGO = GameObject.Instantiate(attackPrefab, null);
 			var attackTransform = attackGO.transform;
 			
