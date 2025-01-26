@@ -17,8 +17,6 @@ Assets/-tk2d.asset.meta
 Assets/Extensions/GoogleDocConnector/Resources/Cache/*
 Assets/Resources/buildDate.txt
 Assets/Resources/buildDate.txt.meta
-ProjectSettings/EditorBuildSettings.asset
-ProjectSettings/EditorBuildSettings.asset.meta
 /[Uu]ser[Ss]ettings/
 *.lnk
 *.lnk.meta
