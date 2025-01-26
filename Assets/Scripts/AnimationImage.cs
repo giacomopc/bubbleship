@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Animation : MonoBehaviour
+public class AnimationImage : MonoBehaviour
 {
 	public Sprite[] sprites;
 	public float speed;

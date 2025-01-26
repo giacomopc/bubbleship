@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine; 
 
 public class Player : MonoBehaviour
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
 	public Sprite idleSprite;
 	public Sprite[] walkSprites;
 	public HealthBar healthBar;
+	public HealthBar battery;
+	new public Image light;
 	
 	
 	[Header("Tweakables")]
@@ -26,6 +29,7 @@ public class Player : MonoBehaviour
 	bool moving;
 	float movingTime;
 	float invincibleTime;
+	bool flashlightOn;
 
 	bool invincible => invincibleTime > 0;
 
@@ -48,6 +52,17 @@ public class Player : MonoBehaviour
 			attackTransform.eulerAngles = Vector3.forward * angle;
 
 			print("attack");
+		}
+
+		if(Input.flashlight)
+		{
+			if(battery.health > 0f)
+				flashlightOn = !flashlightOn;
+		}
+
+		if(flashlightOn)
+		{
+
 		}
 	}
 

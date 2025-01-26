@@ -7,6 +7,7 @@ public static class Input
 	public static bool up;
 	public static bool down;
 	public static bool attack;
+	public static bool flashlight;
 
 	public static void Update()
 	{
@@ -15,6 +16,7 @@ public static class Input
 		left = GetKey(KeyCode.LeftArrow) || GetKey(KeyCode.A);
 		down = GetKey(KeyCode.DownArrow) || GetKey(KeyCode.S);
 		attack = GetKeyDown(KeyCode.Space);
+		flashlight = GetKeyDown(KeyCode.F);
 	}
 
 	public static bool GetKey(KeyCode key) => UnityEngine.Input.GetKey(key);
