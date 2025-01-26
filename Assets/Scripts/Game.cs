@@ -16,7 +16,8 @@ public class Game : MonoBehaviour
 	void Awake()
 	{
 		Physics2D.gravity = Vector2.zero;
-		ship.DOLocalMoveX(120f, 2f).SetEase(Ease.OutBack);
+
+		ship.DOLocalMoveX(120f, 2f).SetEase(Ease.OutBack).From(-120f);
 	}	
 
 	void Update()
