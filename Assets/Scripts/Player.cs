@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Microsoft.Unity.VisualStudio.Editor;
-using UnityEngine; 
+using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -61,15 +62,19 @@ public class Player : MonoBehaviour
 			if(Input.flashlight)
 			{
 				if(battery.health > 0f)
-					flashlightOn = true;
-
-				flashlightOn = false;	
+					flashlightOn = !flashlightOn;
 			}
 
 			if(flashlightOn)
+			{
 				battery.OnDamage(Time.deltaTime / 2f);
+				if(battery.health == 0f)
+					flashlightOn = false;
+			}
 			else
+			{
 				battery.OnDamage(-Time.deltaTime / 2f);
+			}
 
 			light.enabled = flashlightOn;
 			lightMask.enabled = flashlightOn;
