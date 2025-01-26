@@ -7,6 +7,7 @@ public class gotoscene : MonoBehaviour
 {
     public void Jugar()
     {
+        Debug.Log("Juego...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
