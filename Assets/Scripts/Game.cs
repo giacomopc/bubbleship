@@ -47,6 +47,7 @@ public class Game : MonoBehaviour
 
 		if(Input.win)
 		{
+			win = true;
 			house.DOFade(1f, 1f);
 			print("win");
 		}

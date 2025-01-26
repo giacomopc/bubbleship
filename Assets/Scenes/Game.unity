@@ -675,6 +675,7 @@ MonoBehaviour:
   light: {fileID: 1483504187}
   lightMask: {fileID: 1483504188}
   attackclip: {fileID: 8300000, guid: 9c9fc9190fd0d8847aa96660d31493c0, type: 3}
+  lightCollider: {fileID: 1483504189}
   speed: 50
   playerRadius: 5
   fpsWalk: 3
@@ -10834,6 +10835,8 @@ GameObject:
   - component: {fileID: 1163019739}
   - component: {fileID: 1163019741}
   - component: {fileID: 1163019740}
+  - component: {fileID: 1163019742}
+  - component: {fileID: 1163019743}
   m_Layer: 0
   m_Name: monster
   m_TagString: MainCamera
@@ -10927,6 +10930,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1163019742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163019738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1556c13f804ab4ef48f486c6b2b9709f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1163019741}
+--- !u!61 &1163019743
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163019738}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -2.1340992}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 40, y: 40}
+    newSize: {x: 8, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 40, y: 19.392763}
+  m_EdgeRadius: 0
 --- !u!1 &1185216270
 GameObject:
   m_ObjectHideFlags: 0
@@ -11419,7 +11480,8 @@ GameObject:
   - component: {fileID: 1483504185}
   - component: {fileID: 1483504187}
   - component: {fileID: 1483504188}
-  m_Layer: 0
+  - component: {fileID: 1483504189}
+  m_Layer: 6
   m_Name: light
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -11544,6 +11606,61 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1483504189
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483504184}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0.5}
+    oldSize: {x: 72, y: 50}
+    newSize: {x: 8, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 50.694077, y: 21.0822}
+      - {x: 38, y: 16.571938}
+      - {x: 6.632416, y: 3.020546}
+      - {x: 6.958893, y: -3.551384}
+      - {x: 59.238388, y: -24.732826}
+      - {x: 66.69173, y: -17.980621}
+      - {x: 71.34587, y: -5.9007645}
+      - {x: 72.32649, y: 0.79330444}
+      - {x: 69.87787, y: 11.694077}
+      - {x: 60.06166, y: 24.673515}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1582224035
 GameObject:
   m_ObjectHideFlags: 0

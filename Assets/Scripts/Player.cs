@@ -21,11 +21,10 @@ public class Player : MonoBehaviour
 	public SpriteMask lightMask;
 
 	[Header("Unity Audio")]
-
 	public AudioClip attackclip;
+	public Collider2D lightCollider;
 
-
-    [Header("Tweakables")]
+	[Header("Tweakables")]
 	public float speed;
 	public float playerRadius = 5f;
 	public float fpsWalk = 3f;
@@ -83,6 +82,7 @@ public class Player : MonoBehaviour
 
 			light.enabled = flashlightOn;
 			lightMask.enabled = flashlightOn;
+			lightCollider.enabled = flashlightOn;
 			
 			var newAngle = Mathf.LerpAngle(light.transform.eulerAngles.z, angle, 0.15f);
 			light.transform.eulerAngles = Vector3.forward * newAngle;
@@ -140,17 +140,13 @@ public class Player : MonoBehaviour
 		{
 			sprite.color = Color.white;
 		}
-
-		
-
-
 	}
 
 	public void OnDamage(float damage)
 	{
 		if(Game.win)
 			return;
-			
+
 		if(invincible)
 			return;
 
