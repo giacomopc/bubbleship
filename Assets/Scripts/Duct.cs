@@ -14,9 +14,25 @@ public class Duct : MonoBehaviour
 	{
 		timer += Time.deltaTime;
 
-		if(timer > spawnInterval)
+		var enemies = Game.instance.flyingEnemies;
+
+		var count = 0;
+		foreach(var enemy in enemies)
 		{
-			timer %= spawnInterval;
+			if(!enemy.enabled)
+				count++;
+		}
+
+		var finalInterval = spawnInterval;
+		if(count > 0)
+		{
+			finalInterval = spawnInterval - 0.5f * count;
+		}
+
+
+		if(timer > finalInterval)
+		{
+			timer %= finalInterval;
 			var spawnGO = GameObject.Instantiate(prefabToSpawn, transform.parent);
 			spawnGO.transform.position = transform.position;
 		}

@@ -8,6 +8,7 @@ using UInput = UnityEngine.Input;
 
 public class Game : MonoBehaviour
 {
+	public static Game instance;
 	
 	public const float ShipRadius = 122f;
 	public Text time;
@@ -28,6 +29,8 @@ public class Game : MonoBehaviour
 
 	void Awake()
 	{
+		instance = this;
+		
 		Physics2D.gravity = Vector2.zero;
 
 		shipTop.enabled = true;
@@ -52,13 +55,15 @@ public class Game : MonoBehaviour
 
 		if(!win)
 		{
+			var count = 0;
 			foreach(var enemy in flyingEnemies)
 			{
 				if(!enemy.enabled)
-					break;
-
-				Win();
+					count++;
+				
 			}
+			if(count == 4)
+				Win();
 		}
 
 		if(Input.win)

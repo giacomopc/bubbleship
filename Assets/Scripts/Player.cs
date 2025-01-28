@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -88,7 +83,7 @@ public class Player : MonoBehaviour
 			light.transform.eulerAngles = Vector3.forward * newAngle;
 		}
 
-		
+
 	}
 
 	void FixedUpdate()

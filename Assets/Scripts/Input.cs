@@ -18,7 +18,7 @@ public static class Input
 		down = GetKey(KeyCode.DownArrow) || GetKey(KeyCode.S);
 		attack = GetKeyDown(KeyCode.Space);
 		flashlight = GetKeyDown(KeyCode.F);
-		win = GetKeyDown(KeyCode.W);
+		win = GetKey(KeyCode.LeftShift) && GetKeyDown(KeyCode.W);
 	}
 
 	public static bool GetKey(KeyCode key) => UnityEngine.Input.GetKey(key);
