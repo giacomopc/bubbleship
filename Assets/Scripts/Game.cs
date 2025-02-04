@@ -74,7 +74,7 @@ public class Game : MonoBehaviour
 		if(win && Input.attack)
 		{
 			house.enabled = false;
-			dialogue.enabled = true;
+			dialogue.gameObject.SetActive(true);
 		}
 
 		
